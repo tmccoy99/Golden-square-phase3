@@ -19,11 +19,25 @@ RSpec.describe MusicLibrary do
   end
   
   context "When library contains tracks" do
-    lib = MusicLibrary.new
+    
     it "all method returns array containing saved tracks" do
-      dbl = double("Fake track", matches?: true)
-      lib.add(dbl)
-      expect(lib.all).to eq [dbl]
+      lib = MusicLibrary.new
+      dbl1 = double("Fake track") ; dbl2 = double("Faker track")
+      lib.add(dbl1)
+      expect(lib.all).to eq [dbl1]
+      lib.add(dbl2)
+      expect(lib.all).to eq [dbl1, dbl2]
+    end
+    
+    it "search method returns tracks that match keyword" do
+      lib = MusicLibrary.new
+      dbl1 = double(matches?: true)
+      dbl2 = double(matches?: false)
+      dbl3 = double(matches?: true)
+      lib.add(dbl1)
+      lib.add(dbl2)
+      lib.add(dbl3)
+      expect(lib.search("key")).to eq [dbl1, dbl3]
     end
     
   end
