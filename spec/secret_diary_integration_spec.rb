@@ -19,5 +19,15 @@ describe "SecretDiary integration testing:" do
       expect(secret_diary.read).to eq "contents"
     end
   end
+  
+  context "#read is called after #lock is called on unlocked instance" do
+    it "raises 'Go away!' error" do
+      secret_diary =  SecretDiary.new(Diary.new("contents"))
+      secret_diary.unlock
+      expect(secret_diary.read).to eq "contents"
+      secret_diary.lock
+      expect(secret_diary.read).to raise_error "Go away!"
+    end
+  end
 end
 
