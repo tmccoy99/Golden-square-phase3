@@ -26,7 +26,7 @@ describe "SecretDiary integration testing:" do
       secret_diary.unlock
       expect(secret_diary.read).to eq "contents"
       secret_diary.lock
-      expect(secret_diary.read).to raise_error "Go away!"
+      expect{ secret_diary.read }.to raise_error "Go away!"
     end
   end
 end
