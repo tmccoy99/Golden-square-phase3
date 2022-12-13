@@ -3,7 +3,7 @@ require "secret_diary"
 describe "SecretDiary integration testing:" do
   context "on initialisation it:" do
     it "constructs" do
-      SecretDiary.new(Diary.new)
+      SecretDiary.new(Diary.new("contents"))
     end
   end
 end
