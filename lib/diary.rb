@@ -4,4 +4,8 @@ class Diary
     @contents = contents
   end
   
+  def read
+    @contents
+  end
+  
 end
